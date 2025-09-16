@@ -201,19 +201,37 @@
   <!-- Footer -->
   <footer class="text-center pt-6 pb-28 bg-[#038787] mt-auto">
     <p class="text-sm text-white">&copy; 2025. Pesantren Islam Al Irsyad Tengaran.</p>
+    <div class="footer-observer"></div>
   </footer>
 
   <!-- Sticky WhatsApp Button -->
-<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md">
-  <a href="https://wa.me/6285747504750" target="_blank" 
-     class="flex items-center justify-center gap-2 
-            bg-white/30 backdrop-blur-sm 
-            text-green-600 font-semibold py-3 
-            rounded-full shadow-lg border border-white/40 
-            hover:bg-white/50 transition">
-    <i class="fab fa-whatsapp text-xl text-green-600"></i>
-    <span>Ada pertanyaan?</span>
-  </a>
-</div>
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md">
+    <a href="https://wa.me/6285747504750" target="_blank" 
+      class="flex items-center justify-center gap-2 
+              bg-white/30 backdrop-blur-sm 
+              text-green-600 font-semibold py-3 
+              rounded-full shadow-lg border border-white/40 
+              hover:bg-white/50 transition">
+      <i class="wa-icon fab fa-whatsapp text-xl text-green-600"></i>
+      <span id="wa-text">Ada pertanyaan?</span>
+    </a>
+  </div>
+
+<script>
+  const btnText        = document.querySelector('#wa-text');
+  const footerObserver = document.querySelector('.footer-observer');
+  const waIcon         = document.querySelector('.wa-icon');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      btnText.classList.toggle('text-white', entry.isIntersecting);
+      btnText.classList.toggle('text-gray-800', !entry.isIntersecting);
+      waIcon.classList.toggle('text-white', entry.isIntersecting);
+      waIcon.classList.toggle('text-green-600', !entry.isIntersecting);
+    });
+  });
+  observer.observe(footerObserver);
+</script>
+
 </body>
 </html>
